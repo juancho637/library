@@ -33,7 +33,14 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        @if(Auth::check())
+                            <li class="nav-item">
+                                <a href="{{ route('services.index') }}" class="nav-link">Servicios</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('comments.index') }}" class="nav-link">Comentarios</a>
+                            </li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -44,9 +51,9 @@
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             <li class="nav-item">
-                                @if (Route::has('register'))
+                                {{-- @if (Route::has('register'))
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                @endif
+                                @endif --}}
                             </li>
                         @else
                             <li class="nav-item dropdown">
@@ -73,6 +80,14 @@
         </nav>
 
         <main class="py-4">
+            <div class="container">
+                @if(session()->has('flash'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        {!! session('flash') !!}
+                    </div>
+                @endif
+            </div>
             @yield('content')
         </main>
     </div>

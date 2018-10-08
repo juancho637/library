@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Service;
 
 class WelcomeController extends Controller
 {
@@ -14,7 +15,8 @@ class WelcomeController extends Controller
     public function index()
     {
         $comments = Comment::all();
+        $services = Service::all();
 
-        return view('welcome', compact('comments'));
+        return view('welcome', compact('comments', 'services'));
     }
 }

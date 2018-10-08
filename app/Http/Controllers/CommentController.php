@@ -14,7 +14,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comments = Comment::all();
+
+        return view('comments.index', compact('comments'));
     }
 
     /**
@@ -24,7 +26,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        return view('comments.create');
     }
 
     /**
@@ -35,7 +37,9 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Comment::create($request->all());
+
+        return redirect()->route('welcome')->with('flash', 'Comentario creado correctamente');
     }
 
     /**
@@ -46,7 +50,7 @@ class CommentController extends Controller
      */
     public function show(Comment $comment)
     {
-        //
+        return view('comments.show', compact('comment'));
     }
 
     /**
@@ -69,17 +73,22 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+        $comment->update($request->all());
+
+        return redirect()->route('comments.index', $comment)->with('flash', 'Comentario actualizado correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Comment  $comment
+     * @param  \App\Comment $comment
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Comment $comment)
     {
-        //
+        $comment->delete();
+
+        return back()->with('flash', 'Comentario eliminado correctamente');
     }
 }

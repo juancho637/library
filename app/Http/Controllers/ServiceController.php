@@ -14,7 +14,9 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        $services = Service::all();
+
+        return view('services.index', compact('services'));
     }
 
     /**
@@ -24,7 +26,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('services.create');
     }
 
     /**
@@ -35,7 +37,9 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Service::create($request->all());
+
+        return redirect()->route('services.index')->with('flash', 'Servicio creado correctamente');
     }
 
     /**
@@ -46,7 +50,7 @@ class ServiceController extends Controller
      */
     public function show(Service $service)
     {
-        //
+        return view('services.show', compact('service'));
     }
 
     /**
@@ -57,7 +61,7 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        return view('services.edit', compact('service'));
     }
 
     /**
@@ -69,17 +73,22 @@ class ServiceController extends Controller
      */
     public function update(Request $request, Service $service)
     {
-        //
+        $service->update($request->all());
+
+        return redirect()->route('services.index', $service)->with('flash', 'Servicio actualizado correctamente');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Service  $service
+     * @param  \App\Service $service
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
     public function destroy(Service $service)
     {
-        //
+        $service->delete();
+
+        return back()->with('flash', 'Servicio eliminado correctamente');
     }
 }
