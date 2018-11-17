@@ -27,12 +27,12 @@
                                         <td>{{ $service->title }}</td>
                                         <td>{!! \Illuminate\Support\Str::words($service->description, 16,'...') !!}</td>
                                         <td>
-                                            <a href="{{ route('services.show', $service) }}" class="btn btn-sm btn-primary">Visualizar</a>
-                                            <a href="{{ route('services.edit', $service) }}" class="btn btn-sm btn-warning">Editar</a>
+                                            {{--<a href="{{ route('services.show', $service) }}" class="btn btn-sm btn-link">Visualizar</a>--}}
+                                            <a href="{{ route('services.edit', $service) }}" class="btn btn-sm btn-link">Editar</a>
                                             <form method="post" action="{{ route('services.destroy', $service) }}" style="display: inline">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
-                                                <button type="submit" onclick="return confirm('¿Estas seguro de querer eliminar este servicio?')" class="btn btn-sm btn-danger">Eliminar</button>
+                                                <button type="submit" onclick="return confirm('¿Estas seguro de querer eliminar este servicio?')" class="btn btn-sm btn-link">Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>

@@ -75,7 +75,7 @@ class ServiceController extends Controller
     {
         $service->update($request->all());
 
-        return redirect()->route('services.index', $service)->with('flash', 'Servicio actualizado correctamente');
+        return redirect()->route('services.edit', $service)->with('flash', 'Servicio actualizado correctamente');
     }
 
     /**
