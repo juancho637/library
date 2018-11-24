@@ -45,6 +45,9 @@
                             <li class="nav-item">
                                 <a href="{{ route('comments.index') }}" class="nav-link">Comentarios</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('subscribers.index') }}" class="nav-link">Suscriptores</a>
+                            </li>
                         @endif
                     </ul>
 

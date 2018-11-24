@@ -16,11 +16,14 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 Route::get('comments/create', 'CommentController@create')->name('comments.create');
 Route::post('comments', 'CommentController@store')->name('comments.store');
 
+Route::post('subscribers', 'SubscriberController@store')->name('subscribers.store');
+
 Route::get('books', 'BookController@index')->name('books.index');
 //Route::get('books/{book}', 'BookController@show')->name('books.show');
 
 Route::group(['prefix' => 'datatable'], function () {
     Route::resource('books', 'DataTable\BookController', ['only'=>['index'], 'as'=>'datatable']);
+    Route::resource('subscribers', 'DataTable\SubscriberController', ['only'=>['index'], 'as'=>'datatable']);
 });
 
 Auth::routes();
@@ -44,4 +47,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth']], function () {
     Route::get('books/{book}/edit', 'BookController@edit')->name('books.edit');
     Route::put('books/{book}', 'BookController@update')->name('books.update');
     Route::delete('books/{book}', 'BookController@destroy')->name('books.destroy');
+
+    Route::get('subscribers', 'SubscriberController@index')->name('subscribers.index');
 });

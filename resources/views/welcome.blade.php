@@ -3,9 +3,30 @@
 @section('content')
     <div class="container">
         <div class="row">
+            @if(!Auth::check())
+                <form method="post" action="{{ route('subscribers.store') }}" class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+                                @csrf
+                                <input type="email" class="form-control" name="email" placeholder="Suscribe tú correo electrónico para más información" required>
+                                {!! $errors->first('email', '<span style="color: #ff0000;">:message</span>') !!}
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary btn-block">Suscribirse</button>
+                        </div>
+                    </div>
+                </form>
+            @endif
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Servicios</div>
+                    <div class="card-header">
+                        Servicios
+                        <div class="float-right">
+                            <a href="http://www.uao.edu.co/biblioteca" target="_blank">Biblioteca UAO</a>
+                        </div>
+                    </div>
 
                     <div class="card-body">
                         <div class="row">
